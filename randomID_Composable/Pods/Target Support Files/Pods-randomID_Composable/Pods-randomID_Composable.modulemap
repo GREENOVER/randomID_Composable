@@ -1,0 +1,6 @@
+framework module Pods_randomID_Composable {
+  umbrella header "Pods-randomID_Composable-umbrella.h"
+
+  export *
+  module * { export * }
+}
