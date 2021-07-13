@@ -1,14 +1,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
+  @State var idText: String = "ID"
+  @State var titleText: String = "TITLE"
+  
+  var body: some View {
+    VStack {
+      Text(idText)
+      Text(titleText)
+      Button("통신", action: {
+      })
     }
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }
