@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		12749812269D83A000B0A278 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12749811269D83A000B0A278 /* Preview Assets.xcassets */; };
 		1274981A269D84F500B0A278 /* RandomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12749819269D84F500B0A278 /* RandomInfo.swift */; };
 		1274981E269D853000B0A278 /* FetchRandomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1274981D269D853000B0A278 /* FetchRandomInfo.swift */; };
+		12F5DDA3269D8D9800FBA080 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F5DDA2269D8D9800FBA080 /* ContentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		12749813269D83A000B0A278 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12749819269D84F500B0A278 /* RandomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomInfo.swift; sourceTree = "<group>"; };
 		1274981D269D853000B0A278 /* FetchRandomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRandomInfo.swift; sourceTree = "<group>"; };
+		12F5DDA2269D8D9800FBA080 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		CB7BE2797C01AD916241F00E /* Pods-randomID_Composable.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-randomID_Composable.debug.xcconfig"; path = "Target Support Files/Pods-randomID_Composable/Pods-randomID_Composable.debug.xcconfig"; sourceTree = "<group>"; };
 		FCB4DBAE0C27ACF84127272B /* Pods-randomID_Composable.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-randomID_Composable.release.xcconfig"; path = "Target Support Files/Pods-randomID_Composable/Pods-randomID_Composable.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,8 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				1274980A269D839F00B0A278 /* randomID_ComposableApp.swift */,
-				1274981C269D850200B0A278 /* View */,
 				1274981B269D84F900B0A278 /* Model */,
+				1274981C269D850200B0A278 /* View */,
+				12F5DDA4269D8D9A00FBA080 /* ViewModel */,
 				1274980E269D83A000B0A278 /* Assets.xcassets */,
 				12749813269D83A000B0A278 /* Info.plist */,
 				12749810269D83A000B0A278 /* Preview Content */,
@@ -98,6 +101,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		12F5DDA4269D8D9A00FBA080 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				12F5DDA2269D8D9800FBA080 /* ContentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		388F81DAAAE1BAFBDBC047CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,7 +123,6 @@
 				CB7BE2797C01AD916241F00E /* Pods-randomID_Composable.debug.xcconfig */,
 				FCB4DBAE0C27ACF84127272B /* Pods-randomID_Composable.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -233,6 +243,7 @@
 				1274980B269D839F00B0A278 /* randomID_ComposableApp.swift in Sources */,
 				1274981A269D84F500B0A278 /* RandomInfo.swift in Sources */,
 				1274981E269D853000B0A278 /* FetchRandomInfo.swift in Sources */,
+				12F5DDA3269D8D9800FBA080 /* ContentViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
