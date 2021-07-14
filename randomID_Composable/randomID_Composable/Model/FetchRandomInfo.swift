@@ -1,8 +1,8 @@
 import Foundation
 import Alamofire
-import RxSwift
+import Combine
 
-class FetchRandomInfo: ReactiveCompatible {
+class FetchRandomInfo {
   static var shared = FetchRandomInfo()
   
   private init() {}
@@ -28,24 +28,18 @@ class FetchRandomInfo: ReactiveCompatible {
       }
   }
   
+  func fetch() -> AnyPublisher<Result<RandomInfo, NSError>, Never> {
+    return AnyPublisher<Result<RandomInfo, NSError>, Never>.create({ [unowned self] subscriber in
+      self.fetchData(completion: { randomInfo in
+        subscriber.send(randomInfo)
+        subscriber.send(completion: .finished)
+      })
+      return AnyCancellable({})
+    })
+  }
+  
   fileprivate func randomDataIndex() -> Int {
     return Int.random(in: 1...100)
-  }
-}
-
-extension Reactive where Base == FetchRandomInfo {
-  func fetch() -> Single<RandomInfo> {
-    return Single.create(subscribe: { single in
-      self.base.fetchData(completion: { randomInfo in
-        switch randomInfo {
-        case let .success(randomInfo):
-          single(.success(randomInfo))
-        case let .failure(error):
-          single(.failure(error))
-        }
-      })
-      return Disposables.create()
-    })
   }
 }
 
