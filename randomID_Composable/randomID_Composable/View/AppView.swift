@@ -13,12 +13,15 @@ struct AppView: View {
         Button("통신", action: { viewStore.send(.clickButton)
         })
       }
+      .onAppear(perform: {
+        viewStore.send(.clickButton)
+      })
     }
   }
 }
 
-struct ContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    AppView(store: Store<AppState, AppAction>.init(initialState: AppState.init(), reducer: appReducer, environment: AppEnvironment(fetch: FetchRandomInfo())))
-  }
-}
+//struct ContentView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    AppView(store: Store<AppState, AppAction>.init(initialState: AppState.init(), reducer: appReducer, environment: AppEnvironment(fetch: FetchRandomInfo())))
+//  }
+//}

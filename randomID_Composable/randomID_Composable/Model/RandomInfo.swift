@@ -1,6 +1,6 @@
 import Foundation
 
-struct RandomInfo: Decodable {
+struct RandomInfo: Decodable, Equatable {
   let userId: Int
   let id: Int
   let title: String
