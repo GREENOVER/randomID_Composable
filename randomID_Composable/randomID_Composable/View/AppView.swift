@@ -3,7 +3,7 @@ import ComposableArchitecture
 import Combine
 
 struct AppView: View {
-  let store: Store<AppState, AppAction>
+  var store: Store<AppState, AppAction>
   
   var body: some View {
     WithViewStore(self.store) { viewStore in
@@ -17,8 +17,8 @@ struct AppView: View {
   }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    AppView(store: <#Store<AppState, AppAction>#>)
-//  }
-//}
+struct ContentView_Previews: PreviewProvider {
+  static var previews: some View {
+    AppView(store: Store<AppState, AppAction>.init(initialState: AppState.init(), reducer: appReducer, environment: AppEnvironment(fetch: FetchRandomInfo())))
+  }
+}

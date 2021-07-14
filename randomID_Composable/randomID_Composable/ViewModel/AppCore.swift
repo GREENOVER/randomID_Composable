@@ -4,7 +4,7 @@ import ComposableArchitecture
 
 struct AppState: Equatable {
   static func == (lhs: AppState, rhs: AppState) -> Bool {
-    return (rhs.fetchResult != nil)
+    return lhs.displayIDText == rhs.displayIDText
   }
   
   var fetchResult: Result<RandomInfo, NSError>?
