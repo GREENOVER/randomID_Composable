@@ -32,9 +32,10 @@ struct AppState: Equatable {
   }
 }
 
-enum AppAction: Equatable {
+enum AppAction {
   case clickButton
   case viewDidAppear
+  case fetchResult(Result<RandomInfo, NSError>)
 }
 
 struct AppEnvironment {
@@ -44,14 +45,15 @@ struct AppEnvironment {
 let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, environment in
   switch action {
   case .clickButton:
-    let a = environment.fetch.fetch().map { randomInfo in
-      state.fetchResult = randomInfo
-    }
-    
-    
-    
+    return environment.fetch.fetch().map(AppAction.fetchResult).eraseToAnyPublisher()
+      .eraseToEffect()
     
   case .viewDidAppear:
-    break
+    return environment.fetch.fetch().map(AppAction.fetchResult).eraseToAnyPublisher()
+      .eraseToEffect()
+    
+  case let .fetchResult(result):
+    state.fetchResult = result
+    return .none
   }
 }

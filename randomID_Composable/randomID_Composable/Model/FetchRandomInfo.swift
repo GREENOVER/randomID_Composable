@@ -5,7 +5,7 @@ import Combine
 class FetchRandomInfo {
   static var shared = FetchRandomInfo()
   
-  private init() {}
+  public init() {}
   
   let baseURL = "https://jsonplaceholder.typicode.com/todos/"
   
