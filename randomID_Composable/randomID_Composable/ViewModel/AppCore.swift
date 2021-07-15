@@ -51,7 +51,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     
   case let .fetchResult(result):
     state.fetchResult = result
-    return Effect<AppAction, Never>(value: .clickButton)
+    return Effect<AppAction, Never>(value: .viewDidAppear)
       .delay(for: 3, scheduler: environment.mainQueue).eraseToEffect()
   }
 }
