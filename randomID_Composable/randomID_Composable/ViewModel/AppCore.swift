@@ -32,6 +32,7 @@ enum AppAction {
   case clickButton
   case viewDidAppear
   case fetchResult(Result<RandomInfo, NSError>)
+  case stopRandomText
 }
 
 struct AppEnvironment {
@@ -39,19 +40,28 @@ struct AppEnvironment {
   var mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
+struct TimerId: Hashable { }
+
 let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, environment in
   switch action {
   case .clickButton:
-    return environment.fetch.fetch().map(AppAction.fetchResult).eraseToAnyPublisher()
+    return .concatenate([
+      Effect.cancel(id: TimerId()),
+      environment.fetch.fetch().map(AppAction.fetchResult).eraseToAnyPublisher()
       .eraseToEffect()
+    ])
     
   case .viewDidAppear:
-    return environment.fetch.fetch().map(AppAction.fetchResult).eraseToAnyPublisher()
+    return Effect.timer(id: TimerId(), every: .seconds(3), on: DispatchQueue.main.eraseToAnyScheduler())
+      .flatMap({ _ in environment.fetch.fetch() })
+      .map(AppAction.fetchResult)
       .eraseToEffect()
     
   case let .fetchResult(result):
     state.fetchResult = result
-    return Effect<AppAction, Never>(value: .viewDidAppear)
-      .delay(for: 3, scheduler: environment.mainQueue).eraseToEffect()
+    return.none
+    
+  case .stopRandomText:
+    return Effect.cancel(id: TimerId())
   }
 }
