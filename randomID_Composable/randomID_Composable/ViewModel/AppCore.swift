@@ -36,6 +36,7 @@ enum AppAction {
 
 struct AppEnvironment {
   var fetch: FetchRandomInfo
+  var mainQueue: AnySchedulerOf<DispatchQueue>
 }
 
 let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, environment in
@@ -50,6 +51,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     
   case let .fetchResult(result):
     state.fetchResult = result
-    return .none
+    return Effect<AppAction, Never>(value: .clickButton)
+      .delay(for: 3, scheduler: environment.mainQueue).eraseToEffect()
   }
 }

@@ -8,7 +8,7 @@ struct randomID_ComposableApp: App {
   
   var body: some Scene {
     WindowGroup {
-      AppView(store: Store<AppState, AppAction>.init(initialState: AppState.init(), reducer: appReducer, environment: AppEnvironment(fetch: Self.fetchRandomInfo)))
+      AppView(store: Store<AppState, AppAction>.init(initialState: AppState.init(), reducer: appReducer, environment: AppEnvironment(fetch: Self.fetchRandomInfo, mainQueue: .main)))
     }
   }
 }
