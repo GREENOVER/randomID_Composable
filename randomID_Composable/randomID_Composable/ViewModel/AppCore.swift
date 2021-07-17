@@ -46,7 +46,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
   switch action {
   case .clickButton:
     return .concatenate([
-      Effect.cancel(id: TimerId()),
+      Effect(value: .stopRandomText),
       environment.fetch.fetch().map(AppAction.fetchResult).eraseToAnyPublisher()
       .eraseToEffect()
     ])
